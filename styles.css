@@ -54,6 +54,7 @@ body {
     linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #EBECF0;
   background-blend-mode: soft-light, normal;
   box-shadow: 6px 6px 16px #A6ABBD, -6px -6px 16px #FAFBFF;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .calculator-grid > button:active {
