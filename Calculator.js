@@ -17,7 +17,7 @@ export default class Calculator {
   }
 
   appendNumber(number) {
-    if (number === '.' && this.currentOperand.includes('.')) return;
+    if (number === '.' && this.currentOperand.toString().includes('.')) return;
     if (!this.currentOperand) this.currentOperand = '0';
     if (number === '%') return this.currentOperand = this.currentOperand * 0.01;
     if (number === '+/-') {
