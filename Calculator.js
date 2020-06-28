@@ -2,24 +2,23 @@ export default class Calculator {
   constructor(previousOperandTextElement, currentOperandTextElement) {
     this.previousOperandTextElement = previousOperandTextElement;
     this.currentOperandTextElement = currentOperandTextElement;
-    currentOperandTextElement.innerText = '0';
+    this.currentOperandTextElement.innerText = '0';
     this.clear();
   }
 
   clear() {
-    this.currentOperand = '0';
+    this.currentOperand = '';
     this.previousOperand = '';
     this.operation = undefined;
   }
 
   delete() {
-    if (this.currentOperand === '0') this.currentOperand = '0';
-    else this.currentOperand = this.currentOperand.toString().slice(0, -1);
+    this.currentOperand = this.currentOperand.toString().slice(0, -1);
   }
 
   appendNumber(number) {
     if (number === '.' && this.currentOperand.includes('.')) return;
-    if (!this.currentOperand) this.currentOperand += '0';
+    if (!this.currentOperand) this.currentOperand = '0';
     this.currentOperand = this.currentOperand.toString() + number.toString();
   }
 
@@ -73,12 +72,11 @@ export default class Calculator {
   }
 
   updateDisplay() {
-    this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
-    if (this.operation != null) {
-      this.previousOperandTextElement.innerText = 
-        `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
-    } else {
-      this.previousOperandTextElement.innerText = '';
-    }
+    if (this.currentOperand === '') this.currentOperandTextElement.innerText = '0';
+    else this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
+
+    if (this.operation != null) this.previousOperandTextElement.innerText = 
+      `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
+    else this.previousOperandTextElement.innerText = '';
   }
 }

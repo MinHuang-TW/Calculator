@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap');
+
 *, *::before, *::after {
   box-sizing: border-box;
-  font-family: monospace;
-  font-weight: normal;
-  color: #987F69;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 300;
+  /* color: #987F69; */
 }
 
 /* #FDF1CC
@@ -14,6 +16,9 @@ body {
   margin: 0;
   background: #C6D6B8;
   /* background: linear-gradient(to right, #00AAFF, #00ff6c); */
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10+ and Edge */
+  user-select: none; /* Standard syntax */
 }
 
 .calculator-grid {
@@ -28,7 +33,7 @@ body {
 .calculator-grid > button {
   cursor: pointer;
   font-size: 2rem;
-  border: 1px solid #987f6984;
+  border: 1px solid white;
   outline: none;
   background: rgba(255, 255, 255, 0.75);
 }
@@ -56,7 +61,7 @@ body {
 
 .output {
   grid-column: 1 / -1;
-  background: #987F69;
+  background: rgba(0, 0, 0, 0.75);
   display: flex;
   align-items: flex-end;
   justify-content: space-around;
