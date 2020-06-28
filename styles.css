@@ -50,11 +50,6 @@ body {
   background: #E3AD40;
 }
 
-.calculator-grid > button[data-delete],
-.calculator-grid > button[data-all-clear] {
-  background: #FDF1CC;
-}
-
 .span-two {
   grid-column: span 2;
 }

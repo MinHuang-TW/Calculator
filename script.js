@@ -40,8 +40,10 @@ deleteButton.addEventListener('click', button => {
 });
 
 document.addEventListener('keydown', ({ key }) => {
-  if (key < 10 || key === '.') calculator.appendNumber(key);
-  if (key === '+' || key === '-' || key === '*' || key === '/') calculator.chooeseOperation(key);
+  const operators = ['+', '-', '*', '/'];
+  const numbers = ['.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  if (numbers.includes(key)) calculator.appendNumber(key);
+  if (operators.includes(key)) calculator.chooeseOperation(key);
   if (key === 'Enter') calculator.compute();
   if (key === 'Backspace') calculator.delete();
   if (key == 'Escape') calculator.clear();

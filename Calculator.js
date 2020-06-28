@@ -19,6 +19,12 @@ export default class Calculator {
   appendNumber(number) {
     if (number === '.' && this.currentOperand.includes('.')) return;
     if (!this.currentOperand) this.currentOperand = '0';
+    if (number === '%') return this.currentOperand = this.currentOperand * 0.01;
+    if (number === '+/-') {
+      return this.currentOperand = this.currentOperand > 0 
+        ? new Decimal(this.currentOperand).negated()
+        : new Decimal(this.currentOperand).absoluteValue();
+    }
     this.currentOperand = this.currentOperand.toString() + number.toString();
   }
 
@@ -33,7 +39,7 @@ export default class Calculator {
   compute() {
     let computation;
     const previous = new Decimal(this.previousOperand);
-    const current = new Decimal(this.currentOperand);
+    const current = this.currentOperand;
     if (isNaN(previous) || isNaN(current)) return;
     switch (this.operation) {
       case '+':
@@ -63,9 +69,7 @@ export default class Calculator {
     const decimalDigits = stringNumber.split('.')[1];
     let integerDisplay;
     if (isNaN(integerDigits)) integerDisplay = '';
-    else integerDisplay = integerDigits.toLocaleString('en', {
-      maximumFractionDigits: 0,
-    });
+    else integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 });
 
     if (decimalDigits != null) return `${integerDisplay}.${decimalDigits}`;
     else return integerDisplay;
