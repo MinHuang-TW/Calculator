@@ -19,7 +19,6 @@ body {
   margin: 0;
   background: #EBECF0;
   height: 100vh;
-  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,11 +49,12 @@ body {
   border-radius: 50%;
   border: none;
   outline: none;
+  -webkit-tap-highlight-color: transparent;
+  text-align: center;
   background: 
     linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #EBECF0;
   background-blend-mode: soft-light, normal;
   box-shadow: 6px 6px 16px #A6ABBD, -6px -6px 16px #FAFBFF;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .calculator-grid > button:active {
@@ -108,13 +108,29 @@ body {
 
 @media only screen and (max-width: 450px) {
   .calculator-grid {
-    grid-template-columns: repeat(4, 80px);
-    grid-template-rows: minmax(120px, auto) repeat(5, 80px);
+    grid-template-columns: repeat(4, 88px);
+    grid-template-rows: minmax(96px, auto) repeat(5, 88px);
     background: transparent;
     box-shadow: none;
+    padding: 0px;
+  }
+
+  .output {
+    min-height: 114px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .calculator-grid {
+    grid-template-columns: repeat(4, 72px);
+    grid-template-rows: minmax(80px, auto) repeat(5, 72px);
   }
 
   .calculator-grid > button {
-    font-size: 1.65rem;
+    font-size: 1.7rem;
+  }
+
+  .output {
+    min-height: 96px;
   }
 }
