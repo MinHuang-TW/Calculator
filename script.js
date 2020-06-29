@@ -4,6 +4,7 @@ class Calculator {
     this.currentOperandTextElement = currentOperandTextElement;
     this.currentOperandTextElement.innerText = '0';
     this.clear();
+    this.last = '';
   }
 
   clear() {
@@ -59,6 +60,7 @@ class Calculator {
       default:
         return;
     }
+    this.last = current;
     this.currentOperand = computation.toSignificantDigits(8);
     this.operation = undefined;
     this.previousOperand = '';
@@ -76,13 +78,23 @@ class Calculator {
     else return integerDisplay;
   }
 
-  updateDisplay() {
-    if (this.currentOperand === '') this.currentOperandTextElement.innerText = '0';
-    else this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
-
-    if (this.operation != null) this.previousOperandTextElement.innerText = 
-      `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
-    else this.previousOperandTextElement.innerText = '';
+  updateDisplay(input) {
+    if (this.currentOperand !== '') {
+      this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
+      if (input === 'done') {
+        this.previousOperandTextElement.innerText += ` ${this.getDisplayNumber(this.last)}`;
+        this.currentOperandTextElement.style.color = '#00b7c9';
+        this.currentOperandTextElement.style.fontWeight = 400;
+      }
+    } else {
+      this.currentOperandTextElement.innerText = '0';
+      this.currentOperandTextElement.style.color = '#6D7587';
+      this.currentOperandTextElement.style.fontWeight = 300;
+      
+      if (this.operation != null) this.previousOperandTextElement.innerText += 
+        ` ${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
+      else this.previousOperandTextElement.innerText = '';
+    }
   }
 }
 
@@ -112,7 +124,7 @@ operationButtons.forEach(button => {
 
 equalsButton.addEventListener('click', button => {
   calculator.compute();
-  calculator.updateDisplay();
+  calculator.updateDisplay('done');
 });
 
 allClearButton.addEventListener('click', button => {
@@ -133,5 +145,5 @@ document.addEventListener('keydown', ({ key }) => {
   if (key === 'Enter') calculator.compute();
   if (key === 'Backspace') calculator.delete();
   if (key == 'Escape') calculator.clear();
-  calculator.updateDisplay();
+  calculator.updateDisplay(key === 'Enter' && 'done');
 });
