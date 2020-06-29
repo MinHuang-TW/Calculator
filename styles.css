@@ -109,21 +109,28 @@ body {
 @media only screen and (max-width: 450px) {
   .calculator-grid {
     grid-template-columns: repeat(4, 88px);
-    grid-template-rows: minmax(96px, auto) repeat(5, 88px);
+    grid-template-rows: minmax(112px, auto) repeat(5, 88px);
     background: transparent;
     box-shadow: none;
     padding: 0px;
   }
 
   .output {
-    min-height: 114px;
+    min-height: 112px;
   }
 }
 
 @media only screen and (max-width: 400px) {
   .calculator-grid {
-    grid-template-columns: repeat(4, auto);
-    grid-template-rows: minmax(80px, auto) repeat(5, auto);
+    grid-template-columns: repeat(4, 80px);
+    grid-template-rows: minmax(112px, auto) repeat(5, 80px);
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .calculator-grid {
+    grid-template-columns: repeat(4, 72px);
+    grid-template-rows: minmax(112px, auto) repeat(5, 72px);
   }
 
   .calculator-grid > button {
