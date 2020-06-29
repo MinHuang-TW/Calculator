@@ -122,8 +122,8 @@ body {
 
 @media only screen and (max-width: 400px) {
   .calculator-grid {
-    grid-template-columns: repeat(4, 72px);
-    grid-template-rows: minmax(80px, auto) repeat(5, 72px);
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: minmax(80px, auto) repeat(5, auto);
   }
 
   .calculator-grid > button {
