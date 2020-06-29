@@ -20,16 +20,13 @@ class Calculator {
   appendNumber(number) {
     if (number === '.' && this.currentOperand.toString().includes('.')) return;
     if (!this.currentOperand) this.currentOperand = '0';
-    if (number === '%') return this.currentOperand = this.currentOperand * 0.01;
-    if (number === '+/-') {
-      return this.currentOperand = this.currentOperand > 0 
-        ? new Decimal(this.currentOperand).negated()
-        : new Decimal(this.currentOperand).absoluteValue();
-    }
+    if (number === '%') return this.currentOperand = new Decimal(this.currentOperand).times(0.01);
+    if (number === '+/-') return this.currentOperand = new Decimal(this.currentOperand).times(-1);
     this.currentOperand = this.currentOperand.toString() + number.toString();
   }
 
   chooeseOperation(operation) {
+    this.last = this.currentOperand;
     if (this.currentOperand === '') return;
     if (this.previousOperand !== '') this.compute();
     this.operation = operation;
@@ -40,7 +37,7 @@ class Calculator {
   compute() {
     let computation;
     const previous = new Decimal(this.previousOperand);
-    const current = this.currentOperand;
+    const current = new Decimal(this.currentOperand);
     if (isNaN(previous) || isNaN(current)) return;
     switch (this.operation) {
       case '+':
@@ -61,7 +58,9 @@ class Calculator {
         return;
     }
     this.last = current;
-    this.currentOperand = computation.toSignificantDigits(8);
+    this.currentOperand = computation.isPositive() 
+      ? computation.toSignificantDigits(8) 
+      : -computation.toSignificantDigits(8);
     this.operation = undefined;
     this.previousOperand = '';
   }
@@ -82,17 +81,19 @@ class Calculator {
     if (this.currentOperand !== '') {
       this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
       if (input === 'done') {
-        this.previousOperandTextElement.innerText += ` ${this.getDisplayNumber(this.last)}`;
-        this.currentOperandTextElement.style.color = '#00b7c9';
-        this.currentOperandTextElement.style.fontWeight = 400;
+        this.previousOperandTextElement.innerText += ` ${this.getDisplayNumber(this.last)} =`;
+        this.currentOperandTextElement.classList.add('result');
       }
     } else {
       this.currentOperandTextElement.innerText = '0';
-      this.currentOperandTextElement.style.color = '#6D7587';
-      this.currentOperandTextElement.style.fontWeight = 300;
+      this.currentOperandTextElement.classList.remove('result');
       
-      if (this.operation != null) this.previousOperandTextElement.innerText += 
-        ` ${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
+      if (this.operation != null) {
+        const record = ` ${this.getDisplayNumber(this.last)} ${this.operation}`;
+        this.previousOperandTextElement.innerText.endsWith('=')
+          ? this.previousOperandTextElement.innerText = record
+          : this.previousOperandTextElement.innerText += record
+      }
       else this.previousOperandTextElement.innerText = '';
     }
   }

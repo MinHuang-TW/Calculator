@@ -107,6 +107,11 @@ body {
   font-size: 2.5rem;
 }
 
+.output .result {
+  color: #00b7c9;
+  font-weight: 400;
+}
+
 @media only screen and (max-width: 450px) {
   .calculator-grid {
     grid-template-columns: repeat(4, 80px);
