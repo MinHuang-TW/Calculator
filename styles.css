@@ -45,7 +45,7 @@ body {
 
 .calculator-grid > button {
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 1.8rem;
   border-radius: 50%;
   border: none;
   outline: none;
@@ -124,24 +124,23 @@ body {
 
 @media only screen and (max-width: 400px) {
   .calculator-grid {
-    grid-template-columns: repeat(4, 72px);
-    grid-template-rows: minmax(112px, auto) repeat(5, 72px);
-  }
-}
-
-@media only screen and (max-width: 350px) {
-  .calculator-grid {
-    grid-template-columns: repeat(4, 56px);
-    grid-template-rows: minmax(112px, auto) repeat(5, 56px);
+    grid-template: minmax(112px, auto) repeat(5, 72px) / repeat(4, 72px);
   }
 
   .calculator-grid > button {
-    font-size: 1.7rem;
+    font-weight: 400;
+    font-size: 1.5rem;
   }
 
   .calculator-grid > button[data-equals],
   .calculator-grid > button[data-operation] {
     font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .calculator-grid {
+    grid-template: minmax(112px, auto) repeat(5, 56px) / repeat(4, 56px);
   }
 
   .output {
