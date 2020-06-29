@@ -31,11 +31,12 @@ body {
   display: grid;
   justify-content: center;
   align-content: center;
-  grid-template-columns: repeat(4, 100px);
-  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+  grid-gap: 16px;
+  grid-template-columns: repeat(4, 96px);
+  grid-template-rows: minmax(120px, auto) repeat(5, 96px);
 
   padding: 16px;
-  border-radius: 32px 32px 50px 50px;
+  border-radius: 24px 24px 50px 50px;
   background: 
     linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #EBECF0;
   background-blend-mode: soft-light, normal;
@@ -45,7 +46,6 @@ body {
 .calculator-grid > button {
   cursor: pointer;
   font-size: 2rem;
-  margin: 8px;
   border-radius: 50%;
   border: none;
   outline: none;
@@ -94,7 +94,6 @@ body {
   box-sizing: border-box;
   box-shadow: inset 3px 3px 8px #A6ABBD, inset -3px -3px 8px #FAFBFF;
   border-radius: 16px;
-  margin: 8px;
 }
 
 .output .previous-operand {
@@ -108,11 +107,12 @@ body {
 
 @media only screen and (max-width: 450px) {
   .calculator-grid {
-    grid-template-columns: repeat(4, 88px);
-    grid-template-rows: minmax(112px, auto) repeat(5, 88px);
+    grid-template-columns: repeat(4, 80px);
+    grid-template-rows: minmax(112px, auto) repeat(5, 80px);
     background: transparent;
     box-shadow: none;
     padding: 0px;
+    border-radius: none;
   }
 
   .output {
@@ -122,19 +122,24 @@ body {
 
 @media only screen and (max-width: 400px) {
   .calculator-grid {
-    grid-template-columns: repeat(4, 80px);
-    grid-template-rows: minmax(112px, auto) repeat(5, 80px);
+    grid-template-columns: repeat(4, 72px);
+    grid-template-rows: minmax(112px, auto) repeat(5, 72px);
   }
 }
 
 @media only screen and (max-width: 350px) {
   .calculator-grid {
-    grid-template-columns: repeat(4, 72px);
-    grid-template-rows: minmax(112px, auto) repeat(5, 72px);
+    grid-template-columns: repeat(4, 56px);
+    grid-template-rows: minmax(112px, auto) repeat(5, 56px);
   }
 
   .calculator-grid > button {
     font-size: 1.7rem;
+  }
+
+  .calculator-grid > button[data-equals],
+  .calculator-grid > button[data-operation] {
+    font-size: 2rem;
   }
 
   .output {
