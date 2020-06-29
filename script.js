@@ -58,9 +58,7 @@ class Calculator {
         return;
     }
     this.last = current;
-    this.currentOperand = computation.isPositive() 
-      ? computation.toSignificantDigits(8) 
-      : -computation.toSignificantDigits(8);
+    this.currentOperand = computation.toSignificantDigits(8);
     this.operation = undefined;
     this.previousOperand = '';
   }
@@ -79,15 +77,14 @@ class Calculator {
 
   updateDisplay(input) {
     if (this.currentOperand !== '') {
-      this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
       if (input === 'done') {
         this.previousOperandTextElement.innerText += ` ${this.getDisplayNumber(this.last)} =`;
         this.currentOperandTextElement.classList.add('result');
       }
+      this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
     } else {
       this.currentOperandTextElement.innerText = '0';
       this.currentOperandTextElement.classList.remove('result');
-      
       if (this.operation != null) {
         const record = ` ${this.getDisplayNumber(this.last)} ${this.operation}`;
         this.previousOperandTextElement.innerText.endsWith('=')
@@ -138,13 +135,15 @@ deleteButton.addEventListener('click', button => {
   calculator.updateDisplay();
 });
 
-document.addEventListener('keydown', ({ key }) => {
+document.addEventListener('keydown', (event) => {
   const operators = ['+', '-', '*', '/'];
   const numbers = ['.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  const { key } = event;
+  event.preventDefault();
   if (numbers.includes(key)) calculator.appendNumber(key);
   if (operators.includes(key)) calculator.chooeseOperation(key);
-  if (key === 'Enter') calculator.compute();
   if (key === 'Backspace') calculator.delete();
+  if (key === 'Enter') calculator.compute();
   if (key == 'Escape') calculator.clear();
   calculator.updateDisplay(key === 'Enter' && 'done');
 });
