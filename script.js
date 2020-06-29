@@ -48,6 +48,7 @@ class Calculator {
       case '-':
         computation = previous.minus(current);
         break;
+      case '×':
       case '*':
         computation = previous.times(current);
         break;

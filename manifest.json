@@ -1,0 +1,15 @@
+{
+  "short_name": "Calculator",
+  "name": "Calculator",
+  "icons": [
+    {
+      "src": "/images/icon512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#EBECF0"
+}
