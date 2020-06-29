@@ -5,6 +5,7 @@ class Calculator {
     this.currentOperandTextElement.innerText = '0';
     this.clear();
     this.last = '';
+    this.counter = 0;
   }
 
   clear() {
@@ -18,6 +19,7 @@ class Calculator {
   }
 
   appendNumber(number) {
+    this.counter = 0;
     if (number === '.' && this.currentOperand.toString().includes('.')) return;
     if (!this.currentOperand) this.currentOperand = '0';
     if (number === '%') return this.currentOperand = new Decimal(this.currentOperand).times(0.01);
@@ -27,6 +29,7 @@ class Calculator {
 
   chooeseOperation(operation) {
     this.last = this.currentOperand;
+    this.counter += 1;
     if (this.currentOperand === '') return;
     if (this.previousOperand !== '') this.compute();
     this.operation = operation;
@@ -85,65 +88,15 @@ class Calculator {
     } else {
       this.currentOperandTextElement.innerText = '0';
       this.currentOperandTextElement.classList.remove('result');
-      if (this.operation != null) {
-        const record = ` ${this.getDisplayNumber(this.last)} ${this.operation}`;
-        this.previousOperandTextElement.innerText.endsWith('=')
-          ? this.previousOperandTextElement.innerText = record
-          : this.previousOperandTextElement.innerText += record
-      }
-      else this.previousOperandTextElement.innerText = '';
+
+      if (input === 'delete') return;
+      if (this.counter > 1) return;
+      if (!this.operation) return this.previousOperandTextElement.innerText = '';
+
+      const record = ` ${this.getDisplayNumber(this.last)} ${this.operation}`;
+      this.previousOperandTextElement.innerText.endsWith('=')
+        ? this.previousOperandTextElement.innerText = record
+        : this.previousOperandTextElement.innerText += record;
     }
   }
 }
-
-const numberButtons = document.querySelectorAll('[data-number]');
-const operationButtons = document.querySelectorAll('[data-operation]');
-const equalsButton = document.querySelector('[data-equals]');
-const deleteButton = document.querySelector('[data-delete]');
-const allClearButton = document.querySelector('[data-all-clear]');
-const previousOperansTextElement = document.querySelector('[data-previous-operand]');
-const currentOperandTextElement = document.querySelector('[data-current-operand]');
-
-const calculator = new Calculator(previousOperansTextElement, currentOperandTextElement);
-
-numberButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    calculator.appendNumber(button.innerText);
-    calculator.updateDisplay();
-  });
-});
-
-operationButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    calculator.chooeseOperation(button.innerText);
-    calculator.updateDisplay();
-  });
-});
-
-equalsButton.addEventListener('click', button => {
-  calculator.compute();
-  calculator.updateDisplay('done');
-});
-
-allClearButton.addEventListener('click', button => {
-  calculator.clear();
-  calculator.updateDisplay();
-});
-
-deleteButton.addEventListener('click', button => {
-  calculator.delete();
-  calculator.updateDisplay();
-});
-
-document.addEventListener('keydown', (event) => {
-  const operators = ['+', '-', '*', '/'];
-  const numbers = ['.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-  const { key } = event;
-  event.preventDefault();
-  if (numbers.includes(key)) calculator.appendNumber(key);
-  if (operators.includes(key)) calculator.chooeseOperation(key);
-  if (key === 'Backspace') calculator.delete();
-  if (key === 'Enter') calculator.compute();
-  if (key == 'Escape') calculator.clear();
-  calculator.updateDisplay(key === 'Enter' && 'done');
-});
