@@ -1,7 +1,7 @@
 const cacheName = 'v1';
 
 self.addEventListener('install', (event) => {
-  console.log('Service Worker: Installed');
+  console.log('👷 Installed');
 });
 
 self.addEventListener('activate', (event) => {
