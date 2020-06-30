@@ -6,6 +6,7 @@ class Calculator {
     this.clear();
     this.last = '';
     this.counter = 0;
+    this.restart = false;
   }
 
   clear() {
@@ -20,10 +21,15 @@ class Calculator {
 
   appendNumber(number) {
     this.counter = 0;
-    if (number === '.' && this.currentOperand.toString().includes('.')) return;
-    if (!this.currentOperand) this.currentOperand = '0';
-    if (number === '%') return this.currentOperand = new Decimal(this.currentOperand).times(0.01);
-    if (number === '+/-') return this.currentOperand = new Decimal(this.currentOperand).times(-1);
+    if (number === '%') return this.currentOperand = new Decimal(this.currentOperand).times(0.01).toString();
+    if (number === '+/-') return this.currentOperand = new Decimal(this.currentOperand).times(-1).toString();
+
+    if (number === '.') {
+      if (this.currentOperand.toString().includes('.')) return;
+      if (!this.currentOperand) this.currentOperand = '0';
+    } else {
+      if (this.restart) this.currentOperand = '';
+    }
     this.currentOperand = this.currentOperand.toString() + number.toString();
   }
 
@@ -80,14 +86,16 @@ class Calculator {
 
   updateDisplay(input) {
     if (this.currentOperand !== '') {
-      if (input === 'done') {
-        this.previousOperandTextElement.innerText += ` ${this.getDisplayNumber(this.last)} =`;
-        this.currentOperandTextElement.classList.add('result');
+      if (this.restart) {
+        this.currentOperandTextElement.classList.remove('result');
+        this.previousOperandTextElement.innerText = '';
+        this.restart = false;
       }
       this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
     } else {
       this.currentOperandTextElement.innerText = '0';
       this.currentOperandTextElement.classList.remove('result');
+      this.restart = false;
 
       if (input === 'delete') return;
       if (this.counter > 1) return;
@@ -98,5 +106,13 @@ class Calculator {
         ? this.previousOperandTextElement.innerText = record
         : this.previousOperandTextElement.innerText += record;
     }
+  }
+
+  displayResult() {
+    if (this.currentOperand === '') return;
+    this.currentOperandTextElement.classList.add('result');
+    this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
+    this.previousOperandTextElement.innerText += ` ${this.getDisplayNumber(this.last)} =`;
+    this.restart = true;
   }
 }

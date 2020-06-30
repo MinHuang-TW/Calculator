@@ -35,21 +35,18 @@ body {
   grid-template-rows: minmax(120px, auto) repeat(5, 96px);
   padding: 8px;
   border-radius: 24px 24px 50px 50px;
-  background: 
-    linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #EBECF0;
+  background: linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #EBECF0;
   background-blend-mode: soft-light, normal;
   box-shadow: 8px 8px 16px #A6ABBD, -10px -10px 16px #FAFBFF;
 }
 
 .calculator-grid > button {
   cursor: pointer;
-  font-size: 1.8rem;
   border-radius: 50%;
   border: none;
   outline: none;
   -webkit-tap-highlight-color: transparent;
-  background: 
-    linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #EBECF0;
+  background: linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #EBECF0;
   background-blend-mode: soft-light, normal;
   box-shadow: 6px 6px 16px #A6ABBD, -6px -6px 16px #FAFBFF;
   display: flex;
@@ -59,19 +56,23 @@ body {
 }
 
 .calculator-grid > button:active {
-  background: 
-    linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #EBECF0;
+  background: linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #EBECF0;
   background-blend-mode: soft-light, normal;
   border: 1px solid rgba(255, 255, 255, 0.4);
   box-sizing: border-box;
   box-shadow: inset 5px 5px 10px #A6ABBD, inset -5px -5px 10px #FAFBFF;
 }
 
-.calculator-grid > button[data-equals],
-.calculator-grid > button[data-operation] {
-  font-size: 2.5rem;
-  font-weight: 400;
+.calculator-grid > button > p {
+  margin: 0px;
+  font-size: 1.8rem;
+}
+
+.calculator-grid > button[data-equals] > p,
+.calculator-grid > button[data-operation] > p {
+  margin: 0px;
   color: #00b7c9;
+  font-size: 2.8rem;
 }
 
 .span-two {
@@ -86,9 +87,8 @@ body {
   flex-direction: column;
   padding: 8px 16px;
   margin: 8px;
-  word-wrap: break-word;
+  /* word-wrap: break-word; */
   word-break: break-all;
-
   background: 
     linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #EBECF0;
   background-blend-mode: soft-light, normal;
@@ -131,16 +131,6 @@ body {
   .calculator-grid {
     grid-template: minmax(112px, auto) repeat(5, 88px) / repeat(4, 88px);
   }
-
-  .calculator-grid > button {
-    font-weight: 400;
-    font-size: 1.5rem;
-  }
-
-  .calculator-grid > button[data-equals],
-  .calculator-grid > button[data-operation] {
-    font-size: 2rem;
-  }
 }
 
 @media only screen and (max-width: 350px) {
@@ -150,5 +140,13 @@ body {
 
   .output {
     min-height: 96px;
+  }
+
+  .calculator-grid > button > p {
+    font-size: 1.6rem;
+  }
+  .calculator-grid > button[data-equals] > p,
+  .calculator-grid > button[data-operation] > p {
+    font-size: 2.6rem;
   }
 }

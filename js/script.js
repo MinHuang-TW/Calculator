@@ -10,21 +10,16 @@ const calculator = new Calculator(previousOperansTextElement, currentOperandText
 
 numberButtons.forEach(button => {
   button.addEventListener('click', () => {
-    calculator.appendNumber(button.innerText);
+    calculator.appendNumber(button.firstChild.innerText);
     calculator.updateDisplay();
   });
 });
 
 operationButtons.forEach(button => {
   button.addEventListener('click', () => {
-    calculator.chooeseOperation(button.innerText);
+    calculator.chooeseOperation(button.firstChild.innerText);
     calculator.updateDisplay();
   });
-});
-
-equalsButton.addEventListener('click', button => {
-  calculator.compute();
-  calculator.updateDisplay('done');
 });
 
 allClearButton.addEventListener('click', button => {
@@ -35,6 +30,11 @@ allClearButton.addEventListener('click', button => {
 deleteButton.addEventListener('click', button => {
   calculator.delete();
   calculator.updateDisplay('delete');
+});
+
+equalsButton.addEventListener('click', button => {
+  calculator.compute();
+  calculator.displayResult();
 });
 
 document.addEventListener('keydown', (event) => {
@@ -60,6 +60,6 @@ document.addEventListener('keydown', (event) => {
   }
   if (key === 'Enter') {
     calculator.compute();
-    calculator.updateDisplay('done');
+    calculator.displayResult();
   }
 });
