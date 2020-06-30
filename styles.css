@@ -63,6 +63,10 @@ body {
   box-shadow: inset 5px 5px 10px #A6ABBD, inset -5px -5px 10px #FAFBFF;
 }
 
+.calculator-grid > button:active > p {
+  opacity: 0.3;
+}
+
 .calculator-grid > button > p {
   margin: 0px;
   font-size: 1.8rem;
