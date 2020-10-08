@@ -35,9 +35,14 @@ body {
   grid-template-rows: minmax(120px, auto) repeat(5, 96px);
   padding: 8px;
   border-radius: 24px 24px 50px 50px;
-  background: linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #EBECF0;
+  background: 
+    linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, 
+    rgba(255, 255, 255, 0.4) 105.18%), 
+    #EBECF0;
   background-blend-mode: soft-light, normal;
-  box-shadow: 8px 8px 16px #A6ABBD, -10px -10px 16px #FAFBFF;
+  box-shadow: 
+    8px 8px 16px #A6ABBD, 
+    -10px -10px 16px #FAFBFF;
 }
 
 .calculator-grid > button {
@@ -46,25 +51,37 @@ body {
   border: none;
   outline: none;
   -webkit-tap-highlight-color: transparent;
-  background: linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #EBECF0;
+  background: 
+    linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, 
+    rgba(255, 255, 255, 0.4) 105.18%), 
+    #EBECF0;
   background-blend-mode: soft-light, normal;
-  box-shadow: 6px 6px 16px #A6ABBD, -6px -6px 16px #FAFBFF;
+  box-shadow: 
+    6px 6px 16px #A6ABBD, 
+    -6px -6px 16px #FAFBFF;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 8px;
 }
 
+.active,
 .calculator-grid > button:active {
-  background: linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #EBECF0;
-  background-blend-mode: soft-light, normal;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-sizing: border-box;
-  box-shadow: inset 5px 5px 10px #A6ABBD, inset -5px -5px 10px #FAFBFF;
+  background: 
+    linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, 
+    rgba(255, 255, 255, 0.4) 105.18%), 
+    #EBECF0 !important;
+  background-blend-mode: soft-light, normal !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-sizing: border-box !important;
+  box-shadow: 
+    inset 5px 5px 10px #A6ABBD, 
+    inset -5px -5px 10px #FAFBFF !important;
 }
 
+.active > p,
 .calculator-grid > button:active > p {
-  opacity: 0.3;
+  opacity: 0.3 !important;
 }
 
 .calculator-grid > button > p {
@@ -94,11 +111,15 @@ body {
   /* word-wrap: break-word; */
   word-break: break-all;
   background: 
-    linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.4) 105.18%), #EBECF0;
+    linear-gradient(317.7deg, rgba(0, 0, 0, 0.4) 0%, 
+    rgba(255, 255, 255, 0.4) 105.18%), 
+    #EBECF0;
   background-blend-mode: soft-light, normal;
   border: 1px solid rgba(255, 255, 255, 0.4);
   box-sizing: border-box;
-  box-shadow: inset 3px 3px 8px #A6ABBD, inset -3px -3px 8px #FAFBFF;
+  box-shadow: 
+    inset 3px 3px 8px #A6ABBD, 
+    inset -3px -3px 8px #FAFBFF;
   border-radius: 16px;
 }
 

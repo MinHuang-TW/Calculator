@@ -38,10 +38,14 @@ equalsButton.addEventListener('click', button => {
 });
 
 document.addEventListener('keydown', (event) => {
+  const numbers = ['.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '%'];
   const operators = ['+', '-', '*', '/'];
-  const numbers = ['.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
   const { key } = event;
+  const pressedKey = document.getElementById(key);
+
   event.preventDefault();
+  if (event.repeat) return;
+
   if (numbers.includes(key)) {
     calculator.appendNumber(key);
     calculator.updateDisplay();
@@ -62,4 +66,10 @@ document.addEventListener('keydown', (event) => {
     calculator.compute();
     calculator.displayResult();
   }
+
+  if (!pressedKey) return;
+  pressedKey.classList.add('active');
+  document.addEventListener('keyup', () => {
+    pressedKey.classList.remove('active');
+  })
 });
